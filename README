@@ -31,7 +31,7 @@ Area: Other
 add a separate UI case for that)
 
 To start:
-You will need Apache Maven installed. From the command line execute: mvn site
-Html report can be found under {path to the project root}//target/site/surefire-report.html
+You will need Apache Maven installed. From the command line execute: mvn verify
+Html report can be found under {path to the project root}/target/site/serenity/index.html
 
 
