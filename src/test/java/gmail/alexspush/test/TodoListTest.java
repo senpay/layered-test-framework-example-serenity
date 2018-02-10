@@ -7,10 +7,13 @@ import gmail.alexspush.service.TodoCRUDStepsImpl;
 import gmail.alexspush.service.TodoCompositeStepsImpl;
 import gmail.alexspush.service.TodoFilterStepsImpl;
 import gmail.alexspush.service.TodoValidationStepsImpl;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static gmail.alexspush.utils.TestUtils.generateItemName;
 import static gmail.alexspush.utils.TestUtils.getListWithoutSublist;
@@ -19,20 +22,22 @@ import static gmail.alexspush.utils.TestUtils.getListWithoutSublist;
  * Created by Alexander Pushkarev.
  * 6.2.18
  */
+@RunWith(SerenityRunner.class)
 public class TodoListTest {
 
 
-    //Why interface? Couple of reasons
-    //First (and arguable) is that I want my test to be decoupled from concrete steps implementation
-    //Second (undoubtable for me) is that I don't want to think about implementation just yet.
-    //I want my test scenarios to dictate the steps API I need to implement.
-    //In ideal world those classes would be instantiated through setters using IoC container or
-    //any other smart way. Here I just will new them.
-    private IGenericSteps genericSteps = new GenericStepsImpl();
-    private ITodoCRUDSteps todoCRUDSteps = new TodoCRUDStepsImpl();
-    private ITodoFilterSteps todoFilterSteps = new TodoFilterStepsImpl();
-    private ITodoValidationSteps todoValidationSteps = new TodoValidationStepsImpl();
-    private ITodoCompositeSteps todoCompositeSteps = new TodoCompositeStepsImpl();
+    //In order for Serenity to do injection for me I will have to use
+    //Concrete classes here
+    @Steps
+    GenericStepsImpl genericSteps;
+    @Steps
+    TodoCRUDStepsImpl todoCRUDSteps;
+    @Steps
+    TodoFilterStepsImpl todoFilterSteps;
+    @Steps
+    TodoValidationStepsImpl todoValidationSteps;
+    @Steps
+    TodoCompositeStepsImpl todoCompositeSteps;
 
     @Before
     public void setUp() {

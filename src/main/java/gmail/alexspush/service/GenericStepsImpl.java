@@ -2,6 +2,7 @@ package gmail.alexspush.service;
 
 import gmail.alexspush.driver.SelenideApplicationDriver;
 import gmail.alexspush.test.IGenericSteps;
+import net.thucydides.core.annotations.Step;
 
 /**
  * Created by Alexander Pushkarev on 7.2.18.
@@ -20,12 +21,14 @@ public class GenericStepsImpl implements IGenericSteps {
      * irrelevant provided same functionality is implemented
      */
     @Override
+    @Step
     public void openApplication() {
         //In this class/method the reason why we have three layers is not visible (yet?)
         applicationDriver.openApplication();
     }
 
     @Override
+    @Step
     public void closeApplication() {
         applicationDriver.closeApplication();
     }
