@@ -28,6 +28,8 @@ public class TodoListTest {
 
     //In order for Serenity to do injection for me I will have to use
     //Concrete classes here
+    //So Interfaces not really needed if we use Serenity
+    //DI mechanism
     @Steps
     GenericStepsImpl genericSteps;
     @Steps
@@ -67,16 +69,16 @@ public class TodoListTest {
         //What is an action under test
         //And where we do verify the outcome
 
-        //Given
+        genericSteps.given();
         //Not much here - setUp() is almost enough
         //it would be nice to extract this name generation to some
         //getItemName() method, but that is boring thing to do, so I won't do it
         final String todoItemName = generateItemName();
 
-        //When
+        genericSteps.when();
         todoCRUDSteps.userEntersTodoName(todoItemName);
 
-        //Then
+        genericSteps.then();
         //Here we're making assumption that there were no such item before.
         //It can be easily addressed if we generate new name for each test
         //I will not add this implementation here as this is pretty straight-forward thing to do
@@ -102,15 +104,15 @@ public class TodoListTest {
      */
     @Test
     public void shouldBeAbleToMarkTodoItemAsCompleted() {
-        //Given
+        genericSteps.given();
         final String todoItemName = generateItemName();
         //would be nice to reference prev. test here, wouldn't it?
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
-        //When
+        genericSteps.when();
         todoCRUDSteps.userMarksItemAsComplete(todoItemName);
 
-        //Then
+        genericSteps.then();
         //Here we're making assumption that there were no such item before.
         //It can be easily addressed if we generate new name for each test
         //I will not add this implementation here as this is pretty straight-forward thing to do
@@ -124,15 +126,15 @@ public class TodoListTest {
      */
     @Test
     public void shouldBeAbleToUnMarkTodoItemAsCompleted() {
-        //Given
+        genericSteps.given();
         final String todoItemName = generateItemName();
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
         todoCompositeSteps.userCompletedTodoItem(todoItemName);
 
-        //When
+        genericSteps.when();
         todoCRUDSteps.userUnMarksItemAsComplete(todoItemName);
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.todoItemIsNotMarkedCompeted(todoItemName);
     }
 
@@ -144,14 +146,14 @@ public class TodoListTest {
      */
     @Test
     public void shouldBeAbleToDeleteTodoItem() {
-        //Given
+        genericSteps.given();
         final String todoItemName = generateItemName();
         todoCompositeSteps.userCreatedTodoItem(todoItemName);
 
-        //When
+        genericSteps.when();
         todoCRUDSteps.userDeletesItem(todoItemName);
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.todoItemIsNotPresent(todoItemName);
     }
 
@@ -171,17 +173,17 @@ public class TodoListTest {
         //becoming more complicated that test itself.
         //I would consider this as a clear indicator that
         //This "state preparation" logic should be done outside the UI
-        //Given
+        genericSteps.given();
         final int numberOfItemsCreated = 6;
         final int numberOfItemsCompleted = 4;
         final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
         final List<String> completedItems = todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
         final List<String> activeItems = getListWithoutSublist(todoItems, completedItems);
 
-        //When
+        genericSteps.when();
         todoFilterSteps.selectsActiveFilter();
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.userSeesItems(activeItems);
         todoValidationSteps.userDoesNotSeeItems(completedItems);
     }
@@ -192,17 +194,17 @@ public class TodoListTest {
      */
     @Test
     public void shouldShowOnlyCompletedItemsIfCompletedFilterApplied() {
-        //Given
+        genericSteps.given();
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
         final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
         final List<String> completedItems = todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
         final List<String> activeItems = getListWithoutSublist(todoItems, completedItems);
 
-        //When
+        genericSteps.when();
         todoFilterSteps.selectsCompletedFilter();
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.userSeesItems(completedItems);
         todoValidationSteps.userDoesNotSeeItems(activeItems);
     }
@@ -213,16 +215,16 @@ public class TodoListTest {
      */
     @Test
     public void shouldShowAllItemsIfNoFilterApplied() {
-        //Given
+        genericSteps.given();
         final int numberOfItemsCreated = 5;
         final int numberOfItemsCompleted = 2;
         final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
         todoCompositeSteps.userCompletedNumberOfItems(todoItems, numberOfItemsCompleted);
 
-        //When
+        genericSteps.when();
         todoFilterSteps.selectsAllFilter();
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.userSeesItems(todoItems);
     }
 
@@ -233,13 +235,13 @@ public class TodoListTest {
      */
     @Test
     public void failingTestForHtmlReportCheck() {
-        //Given
+        genericSteps.given();
         final int numberOfItemsCreated = 5;
         final List<String> todoItems = todoCompositeSteps.userCreatedNumberOfItems(numberOfItemsCreated);
 
-        //When
+        genericSteps.when();
 
-        //Then
+        genericSteps.then();
         todoValidationSteps.userDoesNotSeeItems(todoItems);
     }
 }
