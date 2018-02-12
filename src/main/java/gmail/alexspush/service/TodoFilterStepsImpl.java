@@ -12,19 +12,16 @@ public class TodoFilterStepsImpl implements ITodoFilterSteps {
     private IMainPage mainPage = SelenideMainPage.INSTANCE;
 
     @Override
-    @Step
     public void selectsCompletedFilter() {
         mainPage.clickCompletedLink();
     }
 
     @Override
-    @Step
     public void selectsAllFilter() {
         mainPage.clickAllLink();
     }
 
     @Override
-    @Step
     public void selectsActiveFilter() {
         mainPage.clickActiveLink();
     }

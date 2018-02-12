@@ -21,14 +21,12 @@ public class GenericStepsImpl implements IGenericSteps {
      * irrelevant provided same functionality is implemented
      */
     @Override
-    @Step
     public void openApplication() {
         //In this class/method the reason why we have three layers is not visible (yet?)
         applicationDriver.openApplication();
     }
 
     @Override
-    @Step
     public void closeApplication() {
         applicationDriver.closeApplication();
     }

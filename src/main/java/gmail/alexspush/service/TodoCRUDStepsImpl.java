@@ -12,26 +12,22 @@ public class TodoCRUDStepsImpl implements ITodoCRUDSteps {
     private IMainPage mainPage = SelenideMainPage.INSTANCE;
 
     @Override
-    @Step
     public void userEntersTodoName(String todoName) {
         mainPage.setNewItemName(todoName);
         mainPage.hitEnter();
     }
 
     @Override
-    @Step
     public void userMarksItemAsComplete(String todoItemName) {
         mainPage.selectCheckBoxForItem(todoItemName);
     }
 
     @Override
-    @Step
     public void userDeletesItem(String todoItemName) {
         mainPage.clickDeleteButtonForItem(todoItemName);
     }
 
     @Override
-    @Step
     public void userUnMarksItemAsComplete(String todoItemName) {
         mainPage.unSelectCheckBoxForItem(todoItemName);
     }

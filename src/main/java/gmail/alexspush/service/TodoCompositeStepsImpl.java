@@ -24,7 +24,6 @@ public class TodoCompositeStepsImpl implements ITodoCompositeSteps {
     private TodoValidationLogic todoValidationLogic = new TodoValidationLogic();
 
     @Override
-    @Step
     public void userCreatedTodoItem(String todoItemName) {
         crudSteps.userEntersTodoName(todoItemName);
         //Using asume here so exception in step preparation would look
@@ -33,14 +32,12 @@ public class TodoCompositeStepsImpl implements ITodoCompositeSteps {
     }
 
     @Override
-    @Step
     public void userCompletedTodoItem(String todoItemName) {
         crudSteps.userMarksItemAsComplete(todoItemName);
         assumeTrue(todoValidationLogic.isTodoItemMarkedCompeted(todoItemName));
     }
 
     @Override
-    @Step
     public List<String> userCreatedNumberOfItems(int numberOfItemsCreated) {
         final List<String> todoItemNames = new ArrayList<>();
         for (int i = 0; i < numberOfItemsCreated; i++) {
@@ -52,7 +49,6 @@ public class TodoCompositeStepsImpl implements ITodoCompositeSteps {
     }
 
     @Override
-    @Step
     public List<String> userCompletedNumberOfItems(List<String> todoItems, int numberOfItemsCompleted) {
         List<String> todoItemsToBeCompleted = todoItems.subList(0, numberOfItemsCompleted);
         for (String todoItem : todoItemsToBeCompleted) {

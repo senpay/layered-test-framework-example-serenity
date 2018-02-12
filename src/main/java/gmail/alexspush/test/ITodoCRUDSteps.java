@@ -1,5 +1,7 @@
 package gmail.alexspush.test;
 
+import net.thucydides.core.annotations.Step;
+
 /**
  * Created by Alexander Pushkarev.
  * 6.2.18
@@ -15,12 +17,16 @@ package gmail.alexspush.test;
  */
 public interface ITodoCRUDSteps {
 
+    @Step
     void userEntersTodoName(String todoName);
 
+    @Step
     void userMarksItemAsComplete(String todoItemName);
 
+    @Step
     void userDeletesItem(String todoItemName);
 
+    @Step
     void userUnMarksItemAsComplete(String todoItemName);
 
 }
