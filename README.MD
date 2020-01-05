@@ -1,5 +1,5 @@
 ## Overview
-This repository contains an example of what a 3-tier (3-layer) Test Automation Framework for the Web-UI application may look like, if you user Serenity.
+This repository contains an example of what a 3-tier (3-layer) Test Automation Framework for the Web-UI application may look like. In contrast with https://github.com/senpay/layered-test-framework-example the code in this repository features Serenity usage.
 More details available here: http://aqaguy.blogspot.com/p/blog-page_26.html
 
 For the more detailed description of tiered/layered architecture pattern please read this: http://aqaguy.blogspot.com/p/test-automation-framework-architecture_17.html
